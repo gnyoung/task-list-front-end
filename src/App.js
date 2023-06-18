@@ -26,6 +26,21 @@ const App = () => {
     });
     setTaskData(tasks);
   };
+
+  const onDeleteItem = id => {
+    console.log("we're here!");
+    console.log(id);
+    // this didn't work
+    // const tasks = taskData.map(task => {
+    //   if (task.id !== id) {
+    //     console.log(task)
+    //     return task;
+    //   }
+    // });
+    const tasks = [...taskData];
+    const updatedTasks = tasks.filter((item) => item.id !== id);
+    setTaskData(updatedTasks);
+  };
   
   return (
     <div className="App">
@@ -33,7 +48,7 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div><TaskList tasks={taskData} onUpdateTask={updateTaskData} /></div>
+        <div><TaskList tasks={taskData} onUpdateTask={updateTaskData} onDeleteItem={onDeleteItem}/></div>
       </main>
     </div>
   );
