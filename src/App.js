@@ -18,7 +18,7 @@ const App = () => {
   
   const updateTaskData = updatedTaskData => {
     const tasks = taskData.map(task => {
-      if (task.id === updateTaskData.id) {
+      if (task.id === updatedTaskData.id) {
         return updatedTaskData;
       } else {
         return task;
@@ -28,12 +28,9 @@ const App = () => {
   };
 
   const onDeleteItem = id => {
-    console.log("we're here!");
-    console.log(id);
     // this didn't work
     // const tasks = taskData.map(task => {
     //   if (task.id !== id) {
-    //     console.log(task)
     //     return task;
     //   }
     // });
