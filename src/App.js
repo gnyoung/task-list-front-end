@@ -75,6 +75,14 @@ const App = () => {
     });
     setTaskData(newTaskList);
   };
+
+  const handleSubmit = newTask => {
+    axios.post(baseUrl, newTask)
+    .then(res => {
+      setTaskData([taskDataConvert(res.data), ...taskData]);
+    })
+    .catch(err => console.log(err));
+  };
   
   return (
     <div className="App">
@@ -83,7 +91,7 @@ const App = () => {
       </header>
       <main>
         <div><TaskList tasks={taskData} onUpdateTask={updateTaskData} onDeleteItem={onDeleteItem}/></div>
-        <NewTaskForm addTaskCallback={addNewTaskData}/>
+        <NewTaskForm addTaskCallback={addNewTaskData} handleSubmit={handleSubmit}/>
       </main>
     </div>
   );

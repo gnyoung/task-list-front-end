@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const NewTaskForm = (props) => {
     const [newTask, setNewTask] = useState({
         title: '',
-        // isComplete: false,
+        isComplete: false,
     });
 
     const onNewTask = (event) => {
@@ -25,6 +25,8 @@ const NewTaskForm = (props) => {
             title: newTask.title,
             isComplete: false,
         });
+
+        props.handleSubmit(event.target.value);
 
         setNewTask(prev => {
             return {
@@ -52,6 +54,7 @@ const NewTaskForm = (props) => {
 
 NewTaskForm.propTypes = {
     addTaskCallback: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;
