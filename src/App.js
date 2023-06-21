@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './components/TaskList.js';
 import './App.css';
+import NewTaskForm from './components/NewTaskForm.js';
 
 const App = () => {
   const baseUrl = 'http://127.0.0.1:5000/tasks';
@@ -29,16 +30,18 @@ const App = () => {
   }, []);
   
   const updateTaskData = updatedTaskData => {
-    let completeOrIncomplete;
     const tasks = taskData.map(task => {
       if (task.id === updatedTaskData.id) {
-        completeOrIncomplete = updatedTaskData.isComplete;
-        return updatedTaskData;
-      } else {
-        return task;
+        return {
+          ...task,
+          isComplete: updateTaskData.isComplete,
+        }; 
       }
+      return task;
     });
     setTaskData(tasks);
+
+    let completeOrIncomplete = updatedTaskData.isComplete;
 
     if (completeOrIncomplete) {
       axios
@@ -51,7 +54,6 @@ const App = () => {
         .then((res) => console.log("Back end response", res.data))
         .catch((err) => console.log(err));
     }
-    
   };
 
   const onDeleteItem = id => {
@@ -63,6 +65,16 @@ const App = () => {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
+
+  const addNewTaskData = newTask => {
+    const newTaskList = [...taskData];
+    
+    newTaskList.push({
+      title: newTask.title,
+      isComplete: newTask.isComplete,
+    });
+    setTaskData(newTaskList);
+  };
   
   return (
     <div className="App">
@@ -71,6 +83,7 @@ const App = () => {
       </header>
       <main>
         <div><TaskList tasks={taskData} onUpdateTask={updateTaskData} onDeleteItem={onDeleteItem}/></div>
+        <NewTaskForm addTaskCallback={addNewTaskData}/>
       </main>
     </div>
   );
