@@ -77,6 +77,7 @@ const App = () => {
   };
 
   const handleSubmit = newTask => {
+    console.log(newTask)
     axios.post(baseUrl, newTask)
     .then(res => {
       setTaskData([taskDataConvert(res.data), ...taskData]);

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 const NewTaskForm = (props) => {
     const [newTask, setNewTask] = useState({
         title: '',
+        description: '',
         isComplete: false,
     });
 
@@ -20,11 +21,6 @@ const NewTaskForm = (props) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-
-        const newTask = {
-            title: event.target.value,
-            description: ''
-        };
 
         props.addTaskCallback({
             title: newTask.title,
