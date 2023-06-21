@@ -21,12 +21,17 @@ const NewTaskForm = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
+        const newTask = {
+            title: event.target.value,
+            description: ''
+        };
+
         props.addTaskCallback({
             title: newTask.title,
             isComplete: false,
         });
 
-        props.handleSubmit(event.target.value);
+        props.handleSubmit(newTask);
 
         setNewTask(prev => {
             return {
