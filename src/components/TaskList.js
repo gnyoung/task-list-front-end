@@ -24,9 +24,9 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteItem }) => {
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
       title: PropTypes.string.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      isComplete: PropTypes.bool,
     })
   ).isRequired,
   onUpdateTask: PropTypes.func.isRequired,

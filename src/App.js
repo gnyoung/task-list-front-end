@@ -10,16 +10,18 @@ const App = () => {
   const [taskData, setTaskData] = useState([]);
 
   const taskDataConvert = (res) => {
-    return res.map((task) => {
-      return { ...task, isComplete: task.is_complete};
-    });
+    return res.map(taskConvert);
+  };
+
+  const taskConvert = (task) => {
+    return { ...task, isComplete: task.is_complete};
   };
 
   const getTaskData = () => {
     axios.get(baseUrl)
     .then(res => {
       setTaskData(taskDataConvert(res.data));
-      console.log(taskDataConvert(res.data));
+      // console.log(taskDataConvert(res.data));
     })
     .catch((err) => console.log(err));
     
@@ -71,18 +73,19 @@ const App = () => {
     
     newTaskList.push({
       title: newTask.title,
-      isComplete: newTask.isComplete,
+      description: newTask.description,
+      isComplete: newTask.isComplete
     });
     setTaskData(newTaskList);
   };
 
   const handleSubmit = newTask => {
-    console.log(newTask);
-    // axios.post(baseUrl, newTask)
-    // .then(res => {
-    //   setTaskData([taskDataConvert(res.data), ...taskData]);
-    // })
-    // .catch(err => console.log(err));
+    axios.post(baseUrl, newTask)
+    .then(res => {
+      setTaskData([taskConvert(res.data.task), ...taskData]);
+      console.log(res.data);
+    })
+    .catch(err => console.log(err));
   };
   
   return (
@@ -100,7 +103,7 @@ const App = () => {
         </div>
         <div>
         <NewTaskForm
-          addTaskCallback={addNewTaskData} 
+          addNewTaskData={addNewTaskData} 
           handleSubmit={handleSubmit}
         />
         </div>

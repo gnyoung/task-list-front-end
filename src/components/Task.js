@@ -30,9 +30,9 @@ const Task = ({ id, title, isComplete, onUpdateTask, onDeleteItem }) => {
 };
 
 Task.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  isComplete: PropTypes.bool,
   onUpdateTask: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
 };

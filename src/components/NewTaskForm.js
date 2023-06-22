@@ -6,34 +6,32 @@ import './NewTaskForm.css';
 const NewTaskForm = (props) => {
     const [newTask, setNewTask] = useState({
         title: '',
+        description: '',
         isComplete: false,
     });
 
     const onNewTask = (event) => {
-        setNewTask(prev => {
-            return {
-                ...prev,
+        setNewTask({
+                ...newTask,
                 title: event.target.value
-            };
+                 
         });
-    };
-
+    };     
 
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        props.addTaskCallback({
+        props.addNewTaskData({
             title: newTask.title,
-            isComplete: false,
+            description: 'Test description',
+            isComplete: newTask.isComplete
         });
 
-        props.handleSubmit(event);
+        props.handleSubmit(newTask);
 
-        setNewTask(prev => {
-            return {
-                ...prev,
-                title: '',
-            };
+        setNewTask({
+            title: '',
+            description: ''  
         });
     };
 
@@ -45,7 +43,7 @@ const NewTaskForm = (props) => {
                     id='task-input'
                     type='text' 
                     name='newTask' 
-                    value={newTask} 
+                    value={newTask.title} 
                     onChange={onNewTask}
                 /> 
             </label>
@@ -56,7 +54,7 @@ const NewTaskForm = (props) => {
 };
 
 NewTaskForm.propTypes = {
-    addTaskCallback: PropTypes.func.isRequired,
+    addNewTaskData: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
 };
 
