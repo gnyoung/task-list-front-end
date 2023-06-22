@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import './NewTaskForm.css';
 
 
 const NewTaskForm = (props) => {
@@ -26,7 +27,7 @@ const NewTaskForm = (props) => {
             isComplete: false,
         });
 
-        props.handleSubmit(event.target.value);
+        props.handleSubmit(event);
 
         setNewTask(prev => {
             return {
@@ -39,12 +40,14 @@ const NewTaskForm = (props) => {
     return (
     <form onSubmit={onFormSubmit}>
         <div>
-            <label>
-                Enter new task: <input 
-                                    type='text' name='newTask' 
-                                    value={newTask.title} 
-                                    onChange={onNewTask}
-                                /> 
+            <label>Enter new task: 
+                <input 
+                    id='task-input'
+                    type='text' 
+                    name='newTask' 
+                    value={newTask} 
+                    onChange={onNewTask}
+                /> 
             </label>
         </div>
             <input type='submit' value='Submit'/> 

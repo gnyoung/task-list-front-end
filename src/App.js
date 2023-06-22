@@ -77,11 +77,12 @@ const App = () => {
   };
 
   const handleSubmit = newTask => {
-    axios.post(baseUrl, newTask)
-    .then(res => {
-      setTaskData([taskDataConvert(res.data), ...taskData]);
-    })
-    .catch(err => console.log(err));
+    console.log(newTask);
+    // axios.post(baseUrl, newTask)
+    // .then(res => {
+    //   setTaskData([taskDataConvert(res.data), ...taskData]);
+    // })
+    // .catch(err => console.log(err));
   };
   
   return (
@@ -89,9 +90,20 @@ const App = () => {
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
-      <main>
-        <div><TaskList tasks={taskData} onUpdateTask={updateTaskData} onDeleteItem={onDeleteItem}/></div>
-        <NewTaskForm addTaskCallback={addNewTaskData} handleSubmit={handleSubmit}/>
+      <main className='container'>
+        <div>
+          <TaskList 
+            tasks={taskData} 
+            onUpdateTask={updateTaskData} 
+            onDeleteItem={onDeleteItem}
+          />
+        </div>
+        <div>
+        <NewTaskForm
+          addTaskCallback={addNewTaskData} 
+          handleSubmit={handleSubmit}
+        />
+        </div>
       </main>
     </div>
   );
