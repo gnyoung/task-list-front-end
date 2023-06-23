@@ -21,7 +21,6 @@ const App = () => {
     axios.get(baseUrl)
     .then(res => {
       setTaskData(taskDataConvert(res.data));
-      // console.log(taskDataConvert(res.data));
     })
     .catch((err) => console.log(err));
     
@@ -83,7 +82,6 @@ const App = () => {
     axios.post(baseUrl, newTask)
     .then(res => {
       setTaskData([taskConvert(res.data.task), ...taskData]);
-      console.log(res.data);
     })
     .catch(err => console.log(err));
   };

@@ -11,10 +11,12 @@ const NewTaskForm = (props) => {
     });
 
     const onNewTask = (event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
         setNewTask({
                 ...newTask,
-                title: event.target.value
-                 
+                [name]: value
         });
     };     
 
@@ -23,10 +25,9 @@ const NewTaskForm = (props) => {
 
         props.addNewTaskData({
             title: newTask.title,
-            description: 'Test description',
+            description: newTask.description,
             isComplete: newTask.isComplete
         });
-
         props.handleSubmit(newTask);
 
         setNewTask({
@@ -40,10 +41,19 @@ const NewTaskForm = (props) => {
         <div>
             <label>Enter new task: 
                 <input 
-                    id='task-input'
+                    className='task-input'
                     type='text' 
-                    name='newTask' 
+                    name='title' 
                     value={newTask.title} 
+                    onChange={onNewTask}
+                /> 
+            </label>
+            <label>Enter new description: 
+                <input 
+                    className='task-input'
+                    type='text' 
+                    name='description' 
+                    value={newTask.description} 
                     onChange={onNewTask}
                 /> 
             </label>
