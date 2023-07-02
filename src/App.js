@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './components/TaskList.js';
 import './App.css';
+import './images/desk.jpg';
 import NewTaskForm from './components/NewTaskForm.js';
+
 
 const App = () => {
   const baseUrl = 'http://127.0.0.1:5000/tasks';
@@ -47,18 +49,17 @@ const App = () => {
     if (completeOrIncomplete) {
       axios
         .patch(`${baseUrl}/${updatedTaskData.id}/mark_complete`)
-        .then((res) => console.log("Back end response", res.data))
+        .then((res) => console.log('Backend response', res.data))
         .catch((err) => console.log(err));
     } else {
       axios
         .patch(`${baseUrl}/${updatedTaskData.id}/mark_incomplete`)
-        .then((res) => console.log("Back end response", res.data))
+        .then((res) => console.log('Backend response', res.data))
         .catch((err) => console.log(err));
     }
   };
 
   const onDeleteItem = id => {
-    // this was surprisingly close to what I had!
     setTaskData((prev) => prev.filter((task) => task.id !== id));
 
     axios
@@ -85,11 +86,16 @@ const App = () => {
     })
     .catch(err => console.log(err));
   };
-  
+
+  const expandDescription = (descriptionId) => {
+    const descriptionElem = document.getElementById(`description-span-${descriptionId}`);
+    descriptionElem.style.display = (descriptionElem.style.display === 'none' || !descriptionElem.style.display) ? 'inline' : 'none';
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Ada&apos;s Task List</h1>
+    <div className='App'>
+      <header className='App-header'>
+        <h1>Task List</h1>
       </header>
       <main className='container'>
         <div>
@@ -97,6 +103,7 @@ const App = () => {
             tasks={taskData} 
             onUpdateTask={updateTaskData} 
             onDeleteItem={onDeleteItem}
+            expandDescription={expandDescription}
           />
         </div>
         <div>

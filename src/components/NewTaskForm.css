@@ -1,3 +1,24 @@
-.task-input {
+div > .task-label {
+    font-size: 16px;
+}
+
+label > .task-input {
     width: 500px;
+    background-color: transparent;
+}
+
+label > .task-input:focus {
+    background-color: transparent;
+}
+
+#submit-button {
+    border-radius: 14px;
+    padding: 4px 14px;
+    background-color: transparent;
+    border: solid 1px;
+}
+
+#submit-button:hover {
+    background-color:lightgray;
+    color:#202020;
 }

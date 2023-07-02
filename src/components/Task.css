@@ -32,12 +32,40 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-button.tasks__item__remove {
+side-buttons > button.tasks__item__remove {
   top: 50%;
   right: 0;
   height: 100%;
-  /* transform: translateY(-50%); */
-  /* padding: 0.85em 2.25em 0.85em 1em; */
   font-size: 100%;
   margin: 0;
+}
+
+#side-buttons > button {
+  padding: 12px 14px;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+
+#title-span {
+  margin-bottom: 8px;
+}
+
+.description {
+  color: #555555;
+  display: none;
+}
+
+#side-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+button#expand-button {
+  background-color: palegoldenrod;
+  border: none;
+}
+
+#expand-button:hover {
+  background-color: rgb(223, 218, 159);
 }

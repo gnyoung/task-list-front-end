@@ -39,7 +39,7 @@ const NewTaskForm = (props) => {
     return (
     <form onSubmit={onFormSubmit}>
         <div>
-            <label>Enter new task: 
+            <label className='task-label'>Add task: 
                 <input 
                     className='task-input'
                     type='text' 
@@ -48,7 +48,7 @@ const NewTaskForm = (props) => {
                     onChange={onNewTask}
                 /> 
             </label>
-            <label>Enter new description: 
+            <label className='task-label'>Add description: 
                 <input 
                     className='task-input'
                     type='text' 
@@ -58,7 +58,7 @@ const NewTaskForm = (props) => {
                 /> 
             </label>
         </div>
-            <input type='submit' value='Submit'/> 
+            <input type='submit' value='Submit' id='submit-button'/> 
     </form>
     );
 };
